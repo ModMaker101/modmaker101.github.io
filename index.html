@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModMaker101's Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function () { 
+    const rgx = new RegExp(/(domainName)|(:portNumUsedInLocalDev)|/g); 
+    const host = window.location.host; 
+    const isMatch = !host.match(rgx); 
+ 
+    function showWarning() { 
+        let warning = document.createElement('h1'); 
+        warning.innerText = 'DON\'T STEAL'; 
+        warning.style.fontSize = '5em'; 
+        warning.style.fontWeight = 700; 
+        warning.style.position = 'fixed'; 
+        warning.style.left = `${(window.innerWidth/2)}px`; 
+        warning.style.top =`${ window.innerHeight /2}px`; 
+        warning.style.zIndex = 9999; 
+        document.body.appendChild(warning); 
+    } 
+ 
+    function exactRvg () { 
+        cornify_add(); 
+ 
+            window.setTimeout(()=> { 
+                exactRvg(); 
+            }, 500); 
+ 
+    } 
+    if (isMatch ) { 
+        showWarning(); 
+        $.getScript('https://www.cornify.com/js/cornify.js',function(){ 
+            exactRvg(); 
+        }); 
+    } 
+ 
+})(); 
+    </script>
+</head>
+<body class="body">
+<!-- this is div for the main title--> 
+   <div>
+        <button id="homeButtons" onclick="location.href='index.html'" >Home</button>
+        <button id="downloadButton" onclick="location.href='downloads.html'" >Downloads</button>
+        <button id="conatctMeButton" onclick="location.href='contact.html'" >Contact</button>
+        <h1 class="title">ModMaker101's Website</h1>
+        <h3 id="underMainTitle">See how to contact me, download my packs, and learn about me.</h3>
+    </div>
+    <div>
+    <button  id="downloadPage" onclick="location.href='downloads.html'" >Downloads</button>
+    <button id="contactPage" onclick="location.href='contact.html'" >Contact</button>
+    <button style="text-align: center;" id="aboutMeButton" onclick="location.href='aboutMe.html'" >About Me</button>
+</body>
+</html>
