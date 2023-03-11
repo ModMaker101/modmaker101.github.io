@@ -1,0 +1,29 @@
+#downloadPage {
+    text-align: center;
+    display: block;
+    margin: auto;
+    padding: auto;
+}
+#contactPage {
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 82px;
+    height: 20;
+}
+#underMainTitle {
+    text-align: center;
+}
+.title {
+    text-align: center;
+}
+#aboutMeButton {
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 82px;
+    
+}
+body{
+    background-color: cornflowerblue;
+}
