@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="../bedrock.png">
+    <title>Manifest Generator</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.2.6/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.2.6/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.2.6/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.2.6/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.2.6/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.2.6/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.2.6/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.2.6/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.2.6/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.2.6/firebase-performance.js"></script>
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <style>
+        .text-focus-in {
+            -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        }
+
+        @-webkit-keyframes text-focus-in {
+            0% {
+                -webkit-filter: blur(12px);
+                filter: blur(12px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-filter: blur(0px);
+                filter: blur(0px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes text-focus-in {
+            0% {
+                -webkit-filter: blur(12px);
+                filter: blur(12px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-filter: blur(0px);
+                filter: blur(0px);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-4 ">
+    <div class="container text-left">
+        <div class="display-3 mb-5 text-focus-in "><b>Bedrock</b> Manifest Generator</div>
+        <div class="row my-5">
+            <h4 class="col-12">Choose a pack type:</h4>
+            <div class="col-sm-12 col-md-6 col-xl-3 p-3 ">
+                <button id="1" class="btn btn-light btn-block border p-4 pack-type rounded-0"
+                    onclick="packType(this.id)">
+                    <h4>Behaviour Pack</h4>
+                    Functions, Animations
+                </button>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-3 p-3 ">
+                <button id="2" class="btn btn-light btn-block border p-4 pack-type rounded-0"
+                    onclick="packType(this.id)">
+                    <h4>Resource Pack</h4>
+                    Textures, Langs
+                </button>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-3 p-3 ">
+                <button id="3" class="btn btn-light btn-block border p-4 pack-type rounded-0"
+                    onclick="packType(this.id)">
+                    <h4>Dependent Packs</h4>
+                    Behaviour and Resource
+                </button>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-3 p-3 ">
+                <button id="4" class="btn btn-light btn-block border p-4 pack-type rounded-0"
+                    onclick="packType(this.id)">
+                    <h4>Skin Pack</h4>
+                    For skins
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <form class="col-12">
+                <div class="form-group">
+                    <label for="packName">
+                        <h4>Pack Name:</h4>
+                    </label>
+                    <input type="text" class="form-control form-control-lg" id="packName"
+                        oninput="name_of_the_pack = this.value; validate();" aria-describedby="packName"
+                        placeholder="Rotten Tomatoes Addon">
+                </div>
+                <div class="form-group">
+                    <label for="packDesc">
+                        <h4>Pack Description</h4>
+                    </label>
+                    <input type="text" class="form-control form-control-lg" id="packDesc"
+                        oninput="desc_of_the_pack = this.value; validate();"
+                        placeholder="Briefly describe what your pack is about">
+                </div>
+            </form>
+
+            <p>
+                <button class="btn text-dark btn-link" type="button" data-toggle="collapse"
+                    data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <h4>Optional Settings
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                        </svg>
+                    </h4>
+                </button>
+            </p>
+
+            <div class="collapse col-12" id="collapseExample">
+                <div class="card card-body col-8">
+                    <input type="text" class="form-control mb-3" placeholder="Author(s)"
+                        oninput="authors = this.value;">
+                    <input type="url" class="form-control mb-3" placeholder="URL" oninput="url=this.value;">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"
+                            onchange="experimental_ui = checked;">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Experimental UI
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2"
+                            onchange="chemistry = checked;">
+                        <label class="form-check-label" for="defaultCheck2">
+                            Chemistry
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-sm-0 col-md-3 col-lg-4"></div>
+            <div class="col-sm-12 col-md-6 col-lg-4 text-center">
+                <button id="btnCreate" class="btn btn-primary p-4 btn-block rounded-0" disabled onclick="getUUID()">
+                    <h3>Create Manifest</h3>
+                </button>
+                <small id="smallComplete" class="text-muted">Choose a type, name, desc, and <b>then</b> create</small>
+            </div>
+            <div class="col-sm-0 col-md-3 col-lg-4"></div>
+        </div>
+
+        <div id="manifest-show" class="row my-5 d-none">
+            <h4 class="col-12 text-muted text-center">Copy this to your manifest file</h4>
+            <div class="col-3 hideCenterers"></div>
+            <div class="col-6">
+                <pre id="jsonView" class="border" style="font-size:medium;">
+                    teste de pre code
+                </pre>
+            </div>
+            <div class="col-3 hideCenterers"></div>
+            <div id="json2div" class="col-6">
+                <pre id="jsonView2" class="border" style="font-size: medium;">
+                    teste de pre code
+                </pre>
+            </div>
+        </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+
+        // check de cenas para criar o manifesto
+        var isTypeSelected = false;
+
+        var name_of_the_pack = " ";
+        var desc_of_the_pack = " ";
+        var data_type = " ";
+        var uuid_BP = " ";
+        var uuid_BP_module = " ";
+        var uuid_RP = " ";
+        var uuid_RP_module = " ";
+        var authors = " ";
+        var url = " ";
+        var experimental_ui = false;
+        var chemistry = false;
+
+        // Create a request variable and assign a new XMLHttpRequest object to it.
+        var request = new XMLHttpRequest()
+
+        function getUUID() {
+
+            // Open a new connection, using the GET request on the URL endpoint
+            request.open('GET', 'https://www.uuidtools.com/api/generate/v4/count/4', true)
+            request.onload = function (data) {
+                var data = JSON.parse(this.response)
+
+                if (request.status >= 200 && request.status < 400) {
+                    console.log(data[0]);
+                    console.log(data[1]);
+                    console.log(data[2]);
+                    console.log(data[3]);
+                    console.log('---')
+
+                    uuid_BP = data[0];
+                    uuid_BP_module = data[1];
+                    uuid_RP = data[2];
+                    uuid_RP_module = data[3];
+                    createManifest();
+                } else {
+                    console.log('error')
+                }
+            }
+            // Send request
+            request.send()
+        }
+
+        $(function () { $('[data-toggle="tooltip"]').tooltip() })
+
+
+
+        // legacy, not used
+        function clipboard(manifest_id, btn_id) {
+            var copyText = document.getElementById(manifest_id);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            let sel = document.getSelection();
+            sel.removeAllRanges();
+            document.getElementById(btn_id).classList.add('btn-success');
+            document.getElementById(btn_id).classList.remove('btn-primary');
+            document.getElementById(btn_id).innerHTML = "Copied!";
+            setTimeout(() => {
+                document.getElementById(btn_id).innerHTML = "Copy to clipboard";
+                document.getElementById(btn_id).classList.add('btn-primary');
+                document.getElementById(btn_id).classList.remove('btn-success');
+            }, 1000);
+        }
+
+        //legacy. doesnt work, isnt used
+        function download(ta_id, filename) {
+            var text = document.getElementById(ta_id).value;
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // to choose the pack type
+        function packType(buttonID) {
+            var buttons = document.getElementsByClassName("pack-type");
+            for (var i = 0; i < buttons.length; i++) {
+                try {
+                    buttons[i].classList.remove("btn-primary");
+                    buttons[i].classList.add("btn-light");
+                }
+                catch { }
+            }
+
+            var button = document.getElementById(buttonID);
+            button.classList.remove("btn-light");
+            button.classList.add("btn-primary");
+            isTypeSelected = true;
+            validate();
+
+            if (buttonID == "1") { data_type = "data" }
+            if (buttonID == "2") { data_type = "resource" }
+            if (buttonID == "3") { data_type = "dependant" }
+            if (buttonID == "4") { data_type = "skin" }
+        }
+
+        function validate() {
+            if (isTypeSelected && name_of_the_pack != " " && desc_of_the_pack != " ") {
+                document.getElementById('btnCreate').removeAttribute('disabled');
+                document.getElementById('smallComplete').classList.add('d-none');
+            }
+        }
+
+        function createManifest() {
+            //defining manifests here cause js is silly
+
+
+            // manifest for behaviour
+            var manifestB = {
+                "format_version": 2,
+                "header": {
+                    "name": name_of_the_pack,
+                    "description": desc_of_the_pack,
+                    "uuid": uuid_BP,
+                    "version": [1, 0, 0],
+                    "min_engine_version": [1, 16, 0]
+                },
+                "modules": [
+                    {
+                        "type": "data",
+                        "description": "_",
+                        "uuid": uuid_BP_module,
+                        "version": [1, 0, 0]
+
+                    }
+                ],
+                "capabilities": {
+                    "experimental_custom_ui": experimental_ui,
+                    "chemistry": chemistry
+                },
+                "metadata": {
+                    "authors": authors,
+                    "url": url
+                }
+
+            }
+
+            // manifest for resource
+            var manifestR = {
+                "format_version": 2,
+                "header": {
+                    "name": name_of_the_pack,
+                    "description": desc_of_the_pack,
+                    "uuid": uuid_RP,
+                    "version": [1, 0, 0],
+                    "min_engine_version": [1, 16, 0]
+                },
+                "modules": [
+                    {
+                        "type": "resource",
+                        "description": "_",
+                        "uuid": uuid_RP_module,
+                        "version": [1, 0, 0]
+
+                    }
+                ],
+                "capabilities": {
+                    "experimental_custom_ui": experimental_ui,
+                    "chemistry": chemistry
+                },
+                "metadata": {
+                    "authors": authors,
+                    "url": url
+                }
+            }
+
+            // manifest for dependant (bev + res)
+            var manifestD1 = {
+                "format_version": 2,
+                "header": {
+                    "name": name_of_the_pack + " BP",
+                    "description": desc_of_the_pack,
+                    "uuid": uuid_BP,
+                    "version": [1, 0, 0],
+                    "min_engine_version": [1, 16, 0]
+                },
+                "modules": [
+                    {
+                        "type": "data",
+                        "description": "_",
+                        "uuid": uuid_BP_module,
+                        "version": [1, 0, 0]
+
+                    }
+                ],
+                "dependencies": [
+                    {
+                        "uuid": uuid_RP,
+                        "version": [1, 0, 0]
+                    }
+                ],
+                "capabilities": {
+                    "experimental_custom_ui": experimental_ui,
+                    "chemistry": chemistry
+                },
+                "metadata": {
+                    "authors": authors,
+                    "url": url
+                }
+            }
+            // manifest for dependant (bev + res)
+            var manifestD2 = {
+                "format_version": 2,
+                "header": {
+                    "name": name_of_the_pack + " RP",
+                    "description": desc_of_the_pack,
+                    "uuid": uuid_RP,
+                    "version": [1, 0, 0],
+                    "min_engine_version": [1, 16, 0]
+                },
+                "modules": [
+                    {
+                        "type": "resource",
+                        "description": "_",
+                        "uuid": uuid_RP_module,
+                        "version": [1, 0, 0]
+
+                    }
+                ],
+                "capabilities": {
+                    "experimental_custom_ui": experimental_ui,
+                    "chemistry": chemistry
+                },
+                "metadata": {
+                    "authors": authors,
+                    "url": url
+                }
+            }
+
+            // manifest for skin
+            var manifestS = {
+                "format_version": 2,
+                "header": {
+                    "name": name_of_the_pack,
+                    "description": desc_of_the_pack,
+                    "uuid": uuid_BP,
+                    "version": [1, 0, 0],
+                    "min_engine_version": [1, 16, 0]
+                },
+                "modules": [
+                    {
+                        "type": "skin_pack",
+                        "description": "_",
+                        "uuid": uuid_RP,
+                        "version": [1, 0, 0]
+
+                    }
+                ],
+                "capabilities": {
+                    "experimental_custom_ui": experimental_ui,
+                    "chemistry": chemistry
+                },
+                "metadata": {
+                    "authors": authors,
+                    "url": url
+                }
+            }
+            var cent = document.getElementsByClassName('hideCenterers');
+            var secondView = document.getElementById('json2div');
+            if (data_type == "data") {
+                document.getElementById('jsonView').textContent = JSON.stringify(manifestB, undefined, 2)
+                for (let i = 0; i < cent.length; i++) {
+                    cent[i].style.display = "initial";
+                }
+                secondView.style.display = "none";
+            }
+            if (data_type == "resource") {
+                document.getElementById('jsonView').textContent = JSON.stringify(manifestR, undefined, 2)
+                for (let i = 0; i < cent.length; i++) {
+                    cent[i].style.display = "initial";
+                }
+                secondView.style.display = "none";
+            }
+            if (data_type == "dependant") {
+                document.getElementById('jsonView').textContent = JSON.stringify(manifestD1, undefined, 2);
+                document.getElementById('jsonView2').textContent = JSON.stringify(manifestD2, undefined, 2);
+
+                for (let i = 0; i < cent.length; i++) {
+                    cent[i].style.display = "none";
+                }
+                secondView.style.display = "block";
+            }
+            if (data_type == "skin") {
+                document.getElementById('jsonView').textContent = JSON.stringify(manifestS, undefined, 2)
+                for (let i = 0; i < cent.length; i++) {
+                    cent[i].style.display = "initial";
+                }
+                secondView.style.display = "none";
+            }
+
+            document.getElementById('manifest-show').classList.remove('d-none');
+        }
+
+    </script>
+
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyDR-VrHg29vGSUj4imiCophvf8LRJbgk2k",
+            authDomain: "bedrock-manifest.firebaseapp.com",
+            projectId: "bedrock-manifest",
+            storageBucket: "bedrock-manifest.appspot.com",
+            messagingSenderId: "809644085474",
+            appId: "1:809644085474:web:1e9faad84284763eeb4ebb",
+            measurementId: "G-FQ13RF4L28"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+
+
+</body>
+
+</html>
