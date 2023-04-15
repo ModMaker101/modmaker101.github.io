@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beagle</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+</head>
+<body class="background">
+    <h1>Beagle Mod</h1>
+    <h4>This mod adds a beagle to Minecraft Bedrock Edtion.
+        <br>
+        The beagle will act like a normal Minecraft wolf when it is tamed.
+        <br>
+        When the beagle is sitting down it will move its ear and wag it's tail.
+        <br>
+        This mod is super fun and i hope you enjoy it.
+    </h4>
+    <h2>HAVE FUN!!!</h2>
+    <button id="downloadBeagle">download</button>
+    <script>
+        $('#downloadBeagle').click(function() {
+            downloadBeagle('addons/beagle/b Behavior.mcpack','addons/beagle/b Resources.mcpack');
+          });
+          
+          var downloadBeagle = function() {
+            for(var i=0; i<arguments.length; i++) {
+              var iframe = $('<iframe style="visibility: collapse;"></iframe>');
+              $('body').append(iframe);
+              var content = iframe[0].contentDocument;
+              var form = '<form action="' + arguments[i] + '" method="GET"></form>';
+              content.write(form);
+              $('form', content).submit();
+              setTimeout((function(iframe) {
+                return function() { 
+                  iframe.remove(); 
+                }
+              })(iframe), 2000);
+            }
+          }        
+          </script>
+</body>
+</html>
