@@ -47,3 +47,42 @@ button:hover{
     border: none; 
     cursor: pointer;
 }
+#downloadTitle{
+    text-align: center;
+}
+#addonsButton{
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 82px;
+}
+#packsButton{
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 82px;
+}
+.backButton{
+    margin-top: 70px;
+    width: 55px;
+    border-radius: 10px;
+}
+#downloadBeagle{
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 82px;
+}
+
+#narutoButton{
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 82px;
+}
+#moreSwordButton{
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 82px;
+}
