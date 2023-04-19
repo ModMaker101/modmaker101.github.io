@@ -73,7 +73,6 @@ button:hover{
     margin: auto;
     width: 82px;
 }
-
 #narutoButton{
     text-align: center;
     display: block;
@@ -81,6 +80,12 @@ button:hover{
     width: 82px;
 }
 #moreSwordButton{
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 82px;
+}
+.resourcePacksButtons{
     text-align: center;
     display: block;
     margin: auto;
