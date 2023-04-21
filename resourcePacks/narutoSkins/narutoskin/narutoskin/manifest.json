@@ -1,0 +1,24 @@
+{
+  "header": {
+    "name": "Naruto skins",
+    "description": "Add Naruto skins to minecraft",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "uuid": "d170f61a-c5af-424f-8be3-b914a1de34d2"
+  },
+  "modules": [
+    {
+      "version": [
+        1,
+        0,
+        0
+      ],
+      "type": "skin_pack",
+      "uuid": "b1855e88-782a-4a40-9d29-b105ed657c7c"
+    }
+  ],
+  "format_version": 1
+}

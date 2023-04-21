@@ -1,0 +1,30 @@
+{
+  "skins": [
+    {
+      "localization_name": "Naruto",
+      "geometry": "geometry.humanoid.custom",
+      "texture": "naruto.png",
+      "type": "free"
+    },
+    {
+      "localization_name": "Saskue",
+      "geometry": "geometry.humanoid.custom",
+      "texture": "saskue.png",
+      "type": "free"
+    },
+    {
+      "localization_name": "Naruto with Kurama",
+      "geometry": "geometry.humanoid.custom",
+      "texture": "kurama.png",
+      "type": "free"
+    },
+    {
+      "localization_name": "Saskue The Last ",
+      "geometry": "geometry.humanoid.custom",
+      "texture": "2020_12_08_saskue--the-last--with-rinnegan-and-sharingan--15988127.png",
+      "type": "free"
+    }
+  ],
+  "serialize_name": "narutoskins",
+  "localization_name": "narutoskins"
+}
