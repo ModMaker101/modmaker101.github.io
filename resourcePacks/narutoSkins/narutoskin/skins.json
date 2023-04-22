@@ -7,7 +7,7 @@
       "type": "free"
     },
     {
-      "localization_name": "Saskue",
+      "localization_name": "Sasuke",
       "geometry": "geometry.humanoid.custom",
       "texture": "saskue.png",
       "type": "free"
@@ -19,7 +19,7 @@
       "type": "free"
     },
     {
-      "localization_name": "Saskue The Last ",
+      "localization_name": "Sasuke The Last ",
       "geometry": "geometry.humanoid.custom",
       "texture": "2020_12_08_saskue--the-last--with-rinnegan-and-sharingan--15988127.png",
       "type": "free"
