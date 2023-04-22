@@ -94,3 +94,12 @@ button:hover{
 #beaglePics{
     text-align: center;
 }
+.center{
+    text-align: center;
+}
+.buttonCenter{
+    text-align: center;
+    display: block;
+    width: 82px;
+    margin: auto;
+}
