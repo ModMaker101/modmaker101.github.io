@@ -1,79 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModMaker101's Website</title>
-    <link rel="shortcut icon" href="icons/icon.png" type="image/x-icon">
-    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-MNZBF9K"></script>
-    <link rel="stylesheet" href="style.css">
-     <script>
-        (function () { 
-    const rgx = new RegExp(/(domainName)|(:portNumUsedInLocalDev)|/g); 
-    const host = window.location.host; 
-    const isMatch = !host.match(rgx); 
- 
-    function showWarning() { 
-        let warning = document.createElement('h1'); 
-        warning.innerText = 'DON\'T STEAL'; 
-        warning.style.fontSize = '5em'; 
-        warning.style.fontWeight = 700; 
-        warning.style.position = 'fixed'; 
-        warning.style.left = `${(window.innerWidth/2)}px`; 
-        warning.style.top =`${ window.innerHeight /2}px`; 
-        warning.style.zIndex = 9999; 
-        document.body.appendChild(warning); 
-    } 
- 
-    function exactRvg () { 
-        cornify_add(); 
- 
-            window.setTimeout(()=> { 
-                exactRvg(); 
-            }, 500); 
- 
-    } 
-    if (isMatch ) { 
-        showWarning(); 
-        $.getScript('https://www.cornify.com/js/cornify.js',function(){ 
-            exactRvg(); 
-        }); 
-    } 
- 
-})(); 
-    </script>  
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-      
-        gtag('config', 'G-MGR58NVZ5C');
-      </script>
-      <!-- Google Tag Manager -->
-      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-NBSZD35');</script>
-        <!-- End Google Tag Manager -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+.p{
+  text-align: center;
+
+}
+</style>
 </head>
-<body class="background">
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBSZD35"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-<!-- this is div for the main title--> 
-   <div>
-        <button id="homeButtons" onclick="location.href='index.html'" >Home</button>  
-        <button id="conatctMeButton" onclick="location.href='contact.html'" >Contact</button>
-        <h1 class="title">ModMaker101's Website</h1>
-        <h3 id="underMainTitle">See how to contact me, download my packs, and learn about me.</h3>
-    </div>
-    <div>
-    <button  id="downloadPage" onclick="location.href='downloads.html'" >Downloads</button>
-    <button id="contactPage" onclick="location.href='contact.html'" >Contact</button>
-    <button style="text-align: center;" id="aboutMeButton" onclick="location.href='aboutMe.html'" >About Me</button>
-    <button style="text-align: center;" id="aboutMeButton" onclick="location.href='https://bedrock-manifest.web.app/'" >Manifest Generator</button>
+<body>
+
+<h1 id="demo" class="text-center"></h1>
+<h4 class="p">This is till the new website.</h4>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("May 31, 2023").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
 </body>
 </html>
