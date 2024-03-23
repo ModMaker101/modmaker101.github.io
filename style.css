@@ -1,29 +1,100 @@
-body {
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  background-color: black;
-  margin: 0rem;
-  overflow: hidden;
-}
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .enderman-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Default style for larger screens */
+  .enderman-background {
+    background-image: url(''); /* Background image set in JS */
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+    
+  .error-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+  
+  .error-message h1 {
+    font-size: 10rem;
+    margin-bottom: 0;
+  }
+  
+  .error-message p {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .back-home {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #9575cd;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  /* Purple particles animation */
+  @keyframes particleAnimation {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-20px);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  }
+  
+  @font-face {
+    font-family: 'Minecraft';
+    src: url('Minecraft.ttf') format('truetype');
+  }
+  
+  .error-message {
+    font-family: 'Minecraft', sans-serif;
+    /* Other styles */
+  }
+  
+  /*css for the particles*/
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: #bc01c9;
+    animation: particleAnimation 3s infinite linear;
+  }
 
-.hackerText {
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(3rem, 10vw, 10rem);
-  color: white;
-  padding: 0rem clamp(1rem, 2vw, 3rem);
-  border-radius: clamp(0.4rem, 0.75vw, 1rem);
-  transition: 0.7s background-color;
-  transition: 0.6s color;
-}
-
-.hackerText:hover {
-  background-color: white;
-  color: black;
-}
-
-/* -- YouTube Link Styles -- */
-
-body.menu-toggled > .meta-link > span {
-  color: rgb(30, 30, 30);
-}
+  /* style.css */
+.reveal {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 2s all ease;
+   }
+   
+   .reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+   }
+   
