@@ -23,21 +23,24 @@
           document.getElementById('content').textContent = 'Hello from ModMaker101!';
       </script>
     <script src="script.js">
-        document.addEventListener('DOMContentLoaded', function() {
-            // Function to extract content from a <p> tag with an ID of 'content'
-            function extractContent() {
-                var contentElement = document.getElementById('content');
-                if (contentElement) {
-                    var contentText = contentElement.innerText;
-                    console.log(contentText);
+        window.onload = function() {
+            // Extract content from a <p> tag with an ID of 'content'
+            var contentElement = document.getElementById('content');
+            if (contentElement) {
+                var contentText = contentElement.textContent;
+                console.log(contentText);
+                
+                // Example: Set the extracted content as the content of a <meta> tag
+                var metaTag = document.querySelector('meta[name="description"]');
+                if (metaTag) {
+                    metaTag.setAttribute("content", contentText);
                 } else {
-                    console.error('Content not found.');
+                    console.error('Meta tag not found.');
                 }
+            } else {
+                console.error('Content not found.');
             }
-
-            // Call the function to extract content
-            extractContent();
-        });
+        };
     </script>
         
 </body>
