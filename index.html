@@ -22,6 +22,23 @@
       <script>
           document.getElementById('content').textContent = 'Hello from ModMaker101!';
       </script>
-    <script src="script.js"></script>
+    <script src="script.js">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to extract content from a <p> tag with an ID of 'content'
+            function extractContent() {
+                var contentElement = document.getElementById('content');
+                if (contentElement) {
+                    var contentText = contentElement.innerText;
+                    console.log(contentText);
+                } else {
+                    console.error('Content not found.');
+                }
+            }
+
+            // Call the function to extract content
+            extractContent();
+        });
+    </script>
+        
 </body>
 </html>
